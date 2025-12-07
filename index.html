@@ -8,9 +8,10 @@
   </head>
   <body>
     <div class="message-container">
-      <h1 class="wish-text">All best wishes for Trang</h1>
+      <h1 class="wish-text" onclick="fireHeartConfetti()">All best wishes for Trang</h1>
     </div>
     <canvas class="webgl"></canvas>
+
     <script type="x-shader/x-vertex" id="vertexshaderCandle">
       void main() {
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
@@ -35,5 +36,55 @@
     </script>
 
     <script type="module" src="./style/module.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <script>
+        function fireHeartConfetti() {
+            var duration = 2 * 1000;
+            var animationEnd = Date.now() + duration;
+            
+            var defaults = {
+                startVelocity: 30,
+                spread: 360,
+                ticks: 100,
+                zIndex: 2000, // Đảm bảo nổi lên trên cùng
+                
+                // CẤU HÌNH TRÁI TIM
+                shapes: ['heart'], 
+                // Tăng kích thước lên 3 hoặc 4 để nhìn rõ hình tim (nếu nhỏ quá sẽ giống hình vuông)
+                scalar: 3.5, 
+                colors: ['#FFC0CB', '#FF69B4', '#FF1493', '#C71585', '#ff4d4d']
+            };
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 30 * (timeLeft / duration);
+
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 } 
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 } 
+                }));
+            }, 250);
+        }
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // Tự động bắn thử sau 1 giây
+        setTimeout(() => {
+            fireHeartConfetti();
+        }, 1000);
+    </script>
   </body>
 </html>

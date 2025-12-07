@@ -27,7 +27,7 @@ canvas.webgl {
   top: 0;
   left: 0;
   outline: none;
-  z-index: 99999;
+  z-index: 1;
 }
 
 h1 {
@@ -61,37 +61,28 @@ h1 {
     pointer-events: none; 
 }
 
+/* Tìm và thay thế class .wish-text và keyframes tương ứng */
+
 .wish-text {
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
-
-    text-transform: none !important; 
+    text-transform: none !important;
     letter-spacing: 2px;
-
-    font-size: 3.5rem; 
+    font-size: 3.5rem;
     position: fixed;
     width: 100%;
     text-align: center;
-
-    top: 5%; 
+    top: 5%;
     left: 0;
-    z-index: 100;
-    pointer-events: none; 
-
-    color: #fff; 
-    /* Hiệu ứng bóng đổ tạo cảm giác chữ nổi 3D nhẹ */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
     
-    /* Hiệu ứng NEON phát sáng (Màu hồng tím lãng mạn) */
-    /* Nếu muốn màu vàng ấm áp, hãy đổi mã màu #ff00de thành #ffd700 */
-    filter: drop-shadow(0 0 5px #fff)
-            drop-shadow(0 0 10px #fff)
-            drop-shadow(0 0 20px #ff00de) 
-            drop-shadow(0 0 40px #ff00de);
-    
-    /* Animation: Chữ nhấp nháy nhẹ nhàng như đèn thở */
-    animation: neon-pulse 1.5s infinite alternate;
+    z-index: 1000;
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: none;
 
+    color: #fff;
+    /* Mặc định là ánh sáng trắng/hồng nhẹ */
+    text-shadow: 0 0 5px #fff, 0 0 10px #ffb3ff;
     animation: neon-pulse 2s infinite alternate;
 }
 
@@ -99,17 +90,20 @@ h1 {
     from {
         opacity: 0.9;
         transform: scale(1);
+        /* Bóng nhỏ gọn */
+        text-shadow: 0 0 5px #fff, 0 0 10px #ffb3ff;
     }
     to {
         opacity: 1;
-        transform: scale(1.05); 
-        filter: drop-shadow(0 0 10px #fff)
-                drop-shadow(0 0 20px #fff)
-                drop-shadow(0 0 40px #ffd700)
-                drop-shadow(0 0 60px #ffd700);
+        transform: scale(1.05);
+        /* Tỏa ra màu vàng (Gold) nhưng gọn gàng hơn, không dùng drop-shadow */
+        text-shadow: 0 0 5px #fff, 
+                     0 0 15px #ffd700, 
+                     0 0 25px #ffd700; 
     }
 }
 
+/* Giữ nguyên phần media query bên dưới */
 @media (max-width: 768px) {
     .wish-text {
         font-size: 2rem; 
