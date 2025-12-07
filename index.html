@@ -40,6 +40,13 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
     <script>
+        // --- PHẦN QUAN TRỌNG: TỰ ĐỊNH NGHĨA HÌNH TRÁI TIM ---
+        // Đây là mã vẽ đường cong SVG của hình trái tim
+        var heartPath = 'M167 72c19,-38 37,-56 75,-56 42,0 76,33 76,75 0,76 -76,151 -151,227 -76,-76 -151,-151 -151,-227 0,-42 33,-75 76,-75 38,0 57,18 75,56z';
+        
+        // Tạo đối tượng hình trái tim từ đường dẫn trên
+        var heartShape = confetti.shapeFromPath({ path: heartPath });
+
         function fireHeartConfetti() {
             var duration = 2 * 1000;
             var animationEnd = Date.now() + duration;
@@ -48,13 +55,17 @@
                 startVelocity: 30,
                 spread: 360,
                 ticks: 100,
-                zIndex: 2000, // Đảm bảo nổi lên trên cùng
+                zIndex: 2000,
                 
-                // CẤU HÌNH TRÁI TIM
-                shapes: ['heart'], 
-                // Tăng kích thước lên 3 hoặc 4 để nhìn rõ hình tim (nếu nhỏ quá sẽ giống hình vuông)
-                scalar: 3.5, 
-                colors: ['#FFC0CB', '#FF69B4', '#FF1493', '#C71585', '#ff4d4d']
+                // --- SỬA Ở ĐÂY ---
+                // Thay vì dùng chữ 'heart', ta dùng biến heartShape vừa tạo
+                shapes: [heartShape], 
+                
+                // Scalar to một chút để nhìn rõ tim
+                scalar: 4, 
+                
+                // Màu hồng đậm, hồng nhạt và đỏ
+                colors: ['#FFC0CB', '#FF69B4', '#FF1493', '#ff0000']
             };
 
             var interval = setInterval(function() {
@@ -81,7 +92,7 @@
             return Math.random() * (max - min) + min;
         }
 
-        // Tự động bắn thử sau 1 giây
+        // Tự động bắn thử sau 1s
         setTimeout(() => {
             fireHeartConfetti();
         }, 1000);
