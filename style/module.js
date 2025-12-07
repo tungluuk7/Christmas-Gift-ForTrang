@@ -255,20 +255,20 @@ const getLights = () => {
 }
 
 const getControls = () => {
-controls.enableDamping = true;
-controls.enableZoom = true;
-controls.enablePan = false; 
+    controls.enableDamping = true;
+    controls.enableZoom = true;
+    controls.enablePan = false; 
 
-controls.minPolarAngle = Math.PI / 5;
-controls.maxPolarAngle = Math.PI / 2;
+    controls.minPolarAngle = Math.PI / 5;
+    controls.maxPolarAngle = Math.PI / 2;
 
-if (sizes.width < 768) {
-  controls.minDistance = 18;
-  controls.maxDistance = 35;
-} else {
-  controls.minDistance = 20;
-  controls.maxDistance = 47;
-}
+    if (sizes.width < 768) {
+      controls.minDistance = 18;
+      controls.maxDistance = 60; 
+    } else {
+      controls.minDistance = 20;
+      controls.maxDistance = 80; 
+    }
 }
 
 
@@ -320,19 +320,19 @@ scene.position.set(0, -.3, 0);
 
 
 const getCamera = () => {
-const aspect = sizes.width / sizes.height;
-const fov = sizes.width < 768 ? 22 : 10;
-camera.fov = fov;
-camera.aspect = aspect;
-camera.updateProjectionMatrix();
+    const aspect = sizes.width / sizes.height;
+    const fov = sizes.width < 768 ? 22 : 10; 
+    camera.fov = fov;
+    camera.aspect = aspect;
+    camera.updateProjectionMatrix();
 
-if (sizes.width < 768) {
-  camera.position.set(15, 8, 25);
-} else {
-  camera.position.set(35, 8, 36);
-}
+    if (sizes.width < 768) {
+      camera.position.set(22, 10, 40); 
+    } else {
+      camera.position.set(50, 10, 55); 
+    }
 
-scene.add(camera);
+    scene.add(camera);
 }
 
 const bakedTexture = textureLoader.load('https://rawcdn.githack.com/ricardoolivaalonso/threejs-journey01/e3cfc35a8270972a21435ad885da2bab54ec2d11/baked.jpg')

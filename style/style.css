@@ -47,3 +47,61 @@ h1 {
   background-color: #b7d4c8ee;
   backdrop-filter: blur(5px);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+.message-container {
+    position: fixed;
+    top: 8%; 
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 100; 
+    pointer-events: none; 
+}
+
+.wish-text {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+
+    text-transform: none !important; 
+    letter-spacing: 2px;
+
+    font-size: 3.5rem; 
+    position: fixed;
+    width: 100%;
+    text-align: center;
+
+    top: 5%; 
+    left: 0;
+    z-index: 100;
+    pointer-events: none; 
+
+    color: #fff; 
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #ffb3ff,
+        0 0 20px #ff4da6,
+        0 0 40px #ff4da6;
+
+    animation: neon-pulse 2s infinite alternate;
+}
+
+@keyframes neon-pulse {
+    from {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 10px #ff4da6);
+    }
+    to {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #ff4da6);
+    }
+}
+
+@media (max-width: 768px) {
+    .wish-text {
+        font-size: 2rem; 
+        top: 10%; 
+    }
+}
