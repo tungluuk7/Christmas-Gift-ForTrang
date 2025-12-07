@@ -79,23 +79,34 @@ h1 {
     pointer-events: none; 
 
     color: #fff; 
-    text-shadow: 
-        0 0 5px #fff,
-        0 0 10px #ffb3ff,
-        0 0 20px #ff4da6,
-        0 0 40px #ff4da6;
+    /* Hiệu ứng bóng đổ tạo cảm giác chữ nổi 3D nhẹ */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+    
+    /* Hiệu ứng NEON phát sáng (Màu hồng tím lãng mạn) */
+    /* Nếu muốn màu vàng ấm áp, hãy đổi mã màu #ff00de thành #ffd700 */
+    filter: drop-shadow(0 0 5px #fff)
+            drop-shadow(0 0 10px #fff)
+            drop-shadow(0 0 20px #ff00de) 
+            drop-shadow(0 0 40px #ff00de);
+    
+    /* Animation: Chữ nhấp nháy nhẹ nhàng như đèn thở */
+    animation: neon-pulse 1.5s infinite alternate;
 
     animation: neon-pulse 2s infinite alternate;
 }
 
 @keyframes neon-pulse {
     from {
-        opacity: 0.8;
-        filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 10px #ff4da6);
+        opacity: 0.9;
+        transform: scale(1);
     }
     to {
         opacity: 1;
-        filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #ff4da6);
+        transform: scale(1.05); 
+        filter: drop-shadow(0 0 10px #fff)
+                drop-shadow(0 0 20px #fff)
+                drop-shadow(0 0 40px #ffd700)
+                drop-shadow(0 0 60px #ffd700);
     }
 }
 
